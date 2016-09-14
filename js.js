@@ -5,7 +5,10 @@ var dlugosc = haslo.length;
 var haslo1 = "";
 var ileskuch=0;
 
-
+var yes = new Audio("yes.wav");
+var no = new Audio("no.wav");
+var lose = new Audio ("lose.wav");
+var win = new Audio("win.wav");
 
 for ( i=0 ; i<dlugosc; i++)
 {
@@ -50,6 +53,7 @@ for ( i=0 ; i<dlugosc; i++)
 	
 		if(trafiona == true)
 			{
+				yes.play();
 				document.getElementById('lit' + nr).style.background = "#003300";
 				document.getElementById('lit' + nr).style.color = "#00c000";
 				document.getElementById('lit' + nr).style.border = "2px solid #00c000";
@@ -57,6 +61,7 @@ for ( i=0 ; i<dlugosc; i++)
 				wypiszhaslo();
 				document.getElementById('lit' + nr).setAttribute("onclick",";");
 			}else {
+				no.play();
 				document.getElementById('lit' + nr).style.background = "#330000";
 				document.getElementById('lit' + nr).style.color = "#c00000";
 				document.getElementById('lit' + nr).style.border = "2px solid #c00000";
@@ -67,11 +72,13 @@ for ( i=0 ; i<dlugosc; i++)
 								
 			}
 	if (haslo == haslo1){
-		document.getElementById("alfabet").innerHTML = "Gratuluje! Prawidłowe hasło : " +haslo+
+		document.getElementById("alfabet").innerHTML = "Gratuluje!<br />Prawidłowe hasło:<br />" +haslo+
 		'<br /><span class="reset" onclick="location.reload()">Zagraj jeszcze raz</span>';
+		win.play();
 	}
 	if (ileskuch >= 9){
 					document.getElementById("alfabet").innerHTML = "NIe udało się! Prawidłowe hasło : " +haslo+
 					'<br /><span class="reset" onclick="location.reload()">Zagraj jeszcze raz</span>';
+					lose.play();
 	}
 }
